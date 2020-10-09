@@ -1,8 +1,12 @@
 <?php 
-    $id = $_GET['id'] ?? null;
+    $searchTerm = $_POST['search'] ?? null;
     // implement error handling later
     require('./characters.php');    
-    $character = $characters[$id];
+    
+    $found = array_filter($characters, function($element){
+        global $searchTerm;
+        return !empty(stristr($element['name'], $searchTerm));
+    });
 ?>
 
 <html>
@@ -14,22 +18,28 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-md offset-md-7">
-                    <form class="form-inline" method="POST" action="/anime_life/search.php">
+                    <form class="form-inline" method="GET" action="/anime_life/search.php">
                         <input class="form-control" type="text" name="search" placeholder="Search">
                         <button class="btn btn-success ml-3" type="submit">Search</button>
                     </form>
                 </div>
             </div>
             <div class='row'>
-                <div class='col-md-5'>
-                    <div class="card">
-                        <img src=<?="/anime_life/images/{$character['image']}" ?> class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title"><?=$character['name'] ?></h5>
-                            <p class="card-text"><?=$character['description'] ?></p>
-                        </div>
-                    </div>
-                </div>
+                <?php 
+                    foreach($found as $element){
+                        echo "
+                            <div class = 'col-md-5'>
+                                <div class='card'>
+                                    <img class='card-img-top' src='/anime_life/images/{$element['image']}'/>
+                                    <div class='card-body'>
+                                        <h5 class='card-title'>{$element['name']}</h5>
+                                        <p class='card-text'>{$element['description']}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ";
+                    }
+                ?>
             </div>
             <div class='row'>
                 <div class='col-md'>

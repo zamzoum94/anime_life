@@ -8,6 +8,14 @@
     </head>
     <body>
         <div class="container">
+            <div class="row">
+                    <div class="col-md offset-md-7">
+                        <form class="form-inline" method="POST" action="/anime_life/search.php">
+                            <input class="form-control" type="text" name="search" placeholder="Search">
+                            <button class="btn btn-success ml-3" type="submit">Search</button>
+                        </form>
+                    </div>
+            </div>
                 <?php 
                     for($id = 0; $id < count($characters); $id++){
                         echo "
