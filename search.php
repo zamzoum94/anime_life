@@ -11,14 +11,14 @@
 
 <html>
     <head>
-        <title>charachters gallery</title>
+        <title>Search</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
     <body>
         <div class="container mt-3">
             <div class="row">
                 <div class="col-md offset-md-7">
-                    <form class="form-inline" method="GET" action="/anime_life/search.php">
+                    <form class="form-inline" method="POST" action="/anime_life/search.php">
                         <input class="form-control" type="text" name="search" placeholder="Search">
                         <button class="btn btn-success ml-3" type="submit">Search</button>
                     </form>
