@@ -1,6 +1,10 @@
 <?php 
-    require './characters.php';
+    $id = $_GET['id'] ?? null;
+    // implement error handling later
+    require('./characters.php');    
+    $character = $characters[$id];
 ?>
+
 <html>
     <head>
         <title>charachters gallery</title>
@@ -8,19 +12,17 @@
     </head>
     <body>
         <div class="container">
-                <?php 
-                    for($id = 0; $id < count($characters); $id++){
-                        echo "
-                            <div class = 'row'>
-                                <div class = 'col-md'>
-                                    <h3>
-                                        <a href='character.php?id={$id}'>{$characters[$id]['name']}</a>
-                                    <h3>
-                                </div>
-                            </div>
-                        ";
-                    } 
-                ?>
+            <div class='row'>
+                <div class='col-md'>
+                    <div class="card" style="width: 18rem;">
+                        <img src=<?="/anime_life/images/{$character['image']}" ?> class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><?=$character['name'] ?></h5>
+                            <p class="card-text"><?=$character['description'] ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
