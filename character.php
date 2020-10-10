@@ -1,7 +1,10 @@
 <?php 
-    $id = $_GET['id'] ?? null;
-    // implement error handling later
     require('./characters.php');    
+    $id = $_GET['id'] ?? null;
+    if(!$id || empty($id) || $id >= count($characters)){
+        header('Location: http://localhost/anime_life');
+    }
+    
     $character = $characters[$id];
 ?>
 

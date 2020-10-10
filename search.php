@@ -1,6 +1,9 @@
 <?php 
     $searchTerm = $_POST['search'] ?? null;
-    // implement error handling later
+    if(!$searchTerm || empty($searchTerm)){
+        header('Location: http://localhost/anime_life');
+    }
+
     require('./characters.php');    
     
     $found = array_filter($characters, function($element){
@@ -26,6 +29,9 @@
             </div>
             <div class='row'>
                 <?php 
+                    if(count($found) === 0){
+                        echo "<h3>No elements found</h3>";
+                    }
                     foreach($found as $element){
                         echo "
                             <div class = 'col-md-5'>
